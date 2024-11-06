@@ -189,3 +189,13 @@ fact-checking endeavor.
 
 Upload your changes to the repository. Discuss and refine answers as a
 team.
+
+Individual Answers:
+
+Bhargav Yellepeddi:
+
+Matthew Ritland:
+
+Jack Larson:
+
+Nathan Cole:

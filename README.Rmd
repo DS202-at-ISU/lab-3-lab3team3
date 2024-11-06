@@ -104,3 +104,26 @@ Make sure to include the code to derive the (numeric) fact for the statement
 Include at least one sentence discussing the result of your fact-checking endeavor.
 
 Upload your changes to the repository. Discuss and refine answers as a team.
+
+
+
+Individual Answers:
+
+Bhargav Yellepeddi:
+
+
+
+
+Matthew Ritland:
+
+
+
+
+Jack Larson:
+
+
+
+
+Nathan Cole:
+
+
