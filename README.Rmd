@@ -76,6 +76,17 @@ returns <- av %>%
 print(deaths)
 print(returns)
 ```
+
+```{r}
+avg_deaths <- deaths %>% # Average
+  filter(Death == "YES") %>%           # Only consider actual deaths
+  group_by(Name.Alias) %>%             # Group by each Avenger
+  summarise(total_deaths = n()) %>%    # Count total deaths for each Avenger
+  summarise(avg_deaths = mean(total_deaths))  # Calculate the average number of deaths
+
+print(avg_deaths)
+```
+
 ## Individually
 
 For each team member, copy this part of the report. 
