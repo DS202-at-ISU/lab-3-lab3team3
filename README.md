@@ -1,6 +1,26 @@
 
 <!-- README.md is generated from README.Rmd. Please edit the README.Rmd file -->
 
+``` r
+# Conditional installation
+if (!requireNamespace("dplyr", quietly = TRUE)) {
+  install.packages("dplyr")
+}
+
+if (!requireNamespace("tidyr", quietly = TRUE)) {
+  install.packages("tidyr")
+}
+
+if (!requireNamespace("readr", quietly = TRUE)) {
+  install.packages("readr")
+}
+
+# Load the libraries
+library(dplyr)
+library(tidyr)
+library(readr)
+```
+
 # Lab report \#3 - instructions
 
 Follow the instructions posted at
