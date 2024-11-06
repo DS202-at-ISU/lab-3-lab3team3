@@ -220,10 +220,9 @@ print(deaths_summary)
 
 ### Answer
 
-Based on the dataset, we found that there are 69 unique Avengers who
-have died at least once. Therefore, the statement that “69 Avengers had
-died at least one time after joining the team” is confirmed by our
-analysis.
+Based on the dataset, I found that there are 69 unique Avengers who have
+died at least once. Therefore, the statement that “69 Avengers had died
+at least one time after joining the team” is confirmed by our analysis.
 
 ## Matthew Ritland:
 
