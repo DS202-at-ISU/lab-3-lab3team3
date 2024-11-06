@@ -107,23 +107,41 @@ Upload your changes to the repository. Discuss and refine answers as a team.
 
 
 
-Individual Answers:
+# Individual Answers:
 
-Bhargav Yellepeddi:
+## Bhargav Yellepeddi:
+
+### FiveThirtyEight Statement
+> "Out of 173 listed Avengers, my analysis found that 69 had died at least one time after they joined the team."
+
+### Count the number of unique Avengers who have died at least once
+```{r}
+library(dplyr)
+library(readr)
+
+deaths_summary <- deaths %>%
+  filter(tolower(Death) == "yes") %>%   # Only consider actual deaths
+  distinct(URL) %>%              # Get unique Avengers who died at least once
+  summarise(total_avengers_died = n())  # Count the number of unique Avengers
+
+print(deaths_summary)
+```
+
+### Answer
+Based on the dataset, we found that there are 69 unique Avengers who have died at least once. Therefore, the statement that "69 Avengers had died at least one time after joining the team" is confirmed by our analysis.
+
+
+
+## Matthew Ritland:
 
 
 
 
-Matthew Ritland:
+## Jack Larson:
 
 
 
 
-Jack Larson:
-
-
-
-
-Nathan Cole:
+## Nathan Cole:
 
 
