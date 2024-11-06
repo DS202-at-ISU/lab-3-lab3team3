@@ -17,6 +17,20 @@ if (!requireNamespace("readr", quietly = TRUE)) {
 
 # Load the libraries
 library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
 library(tidyr)
 library(readr)
 ```
@@ -225,6 +239,32 @@ died at least once. Therefore, the statement that “69 Avengers had died
 at least one time after joining the team” is confirmed by our analysis.
 
 ## Matthew Ritland:
+
+### FiveThirtyEight Statement
+
+> “I counted 89 total deaths”
+
+\###Count number of total deaths
+
+``` r
+total_deaths <- deaths %>%
+  filter(Death == "YES") %>%   # Filter for actual deaths
+  summarise(total_deaths_count = n())  # Count total number of deaths
+
+# Print total deaths
+print(total_deaths)
+```
+
+    ## # A tibble: 1 × 1
+    ##   total_deaths_count
+    ##                <int>
+    ## 1                 89
+
+### Answer:
+
+I filtered through the death dataset, and only kept the one’s that
+included “YES” in the row, then summed the total of rows (which only
+acted as counting each death)
 
 ## Jack Larson:
 

@@ -137,6 +137,22 @@ Based on the dataset, I found that there are 69 unique Avengers who have died at
 
 ## Matthew Ritland: 
 
+### FiveThirtyEight Statement
+> "I counted 89 total deaths"
+
+###Count number of total deaths
+
+```{r}
+total_deaths <- deaths %>%
+  filter(Death == "YES") %>%   # Filter for actual deaths
+  summarise(total_deaths_count = n())  # Count total number of deaths
+
+# Print total deaths
+print(total_deaths)
+```
+### Answer:
+I filtered through the death dataset, and only kept the one's that included "YES" in the row,
+then summed the total of rows (which only acted as counting each death)
 
 
 
