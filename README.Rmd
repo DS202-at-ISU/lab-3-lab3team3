@@ -62,18 +62,32 @@ deaths <- av %>%
                names_to = "Time", 
                values_to = "Death") %>%
   mutate(Time = parse_number(Time)) %>%
-  select(Name.Alias, Time, Death)
+  select(URL, Time, Death)
 
 returns <- av %>%
   pivot_longer(cols = starts_with("Return"), 
                names_to = "Time", 
                values_to = "Return") %>%
   mutate(Time = parse_number(Time)) %>%
-  select(Name.Alias, Time, Return)
+  select(URL, Time, Return)
  
 print(deaths)
 print(returns)
 ```
+<<<<<<< HEAD
+=======
+
+```{r}
+avg_deaths <- deaths %>% # Average
+  filter(Death == "YES") %>%           # Only consider actual deaths
+  group_by(URL) %>%             # Group by each Avenger
+  summarise(total_deaths = n()) %>%    # Count total deaths for each Avenger
+  summarise(avg_deaths = mean(total_deaths))  # Calculate the average number of deaths
+
+print(avg_deaths)
+```
+
+>>>>>>> 71745a2967507adf70b844e37c08aa375b6a2718
 ## Individually
 
 For each team member, copy this part of the report. 

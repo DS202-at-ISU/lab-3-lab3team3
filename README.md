@@ -17,20 +17,6 @@ if (!requireNamespace("readr", quietly = TRUE)) {
 
 # Load the libraries
 library(dplyr)
-```
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 library(tidyr)
 library(readr)
 ```
@@ -111,39 +97,37 @@ Based on these datasets calculate the average number of deaths an
 Avenger suffers.
 
 ``` r
-library(tidyr)
-library(dplyr)
-
+#Jack
 deaths <- av %>%
   pivot_longer(cols = starts_with("Death"), 
                names_to = "Time", 
                values_to = "Death") %>%
   mutate(Time = parse_number(Time)) %>%
-  select(Name.Alias, Time, Death)
+  select(URL, Time, Death)
 
 returns <- av %>%
   pivot_longer(cols = starts_with("Return"), 
                names_to = "Time", 
                values_to = "Return") %>%
   mutate(Time = parse_number(Time)) %>%
-  select(Name.Alias, Time, Return)
+  select(URL, Time, Return)
  
 print(deaths)
 ```
 
     ## # A tibble: 865 × 3
-    ##    Name.Alias                     Time Death
-    ##    <chr>                         <dbl> <chr>
-    ##  1 "Henry Jonathan \"Hank\" Pym"     1 "YES"
-    ##  2 "Henry Jonathan \"Hank\" Pym"     2 ""   
-    ##  3 "Henry Jonathan \"Hank\" Pym"     3 ""   
-    ##  4 "Henry Jonathan \"Hank\" Pym"     4 ""   
-    ##  5 "Henry Jonathan \"Hank\" Pym"     5 ""   
-    ##  6 "Janet van Dyne"                  1 "YES"
-    ##  7 "Janet van Dyne"                  2 ""   
-    ##  8 "Janet van Dyne"                  3 ""   
-    ##  9 "Janet van Dyne"                  4 ""   
-    ## 10 "Janet van Dyne"                  5 ""   
+    ##    URL                                                 Time Death
+    ##    <chr>                                              <dbl> <chr>
+    ##  1 http://marvel.wikia.com/Henry_Pym_(Earth-616)          1 "YES"
+    ##  2 http://marvel.wikia.com/Henry_Pym_(Earth-616)          2 ""   
+    ##  3 http://marvel.wikia.com/Henry_Pym_(Earth-616)          3 ""   
+    ##  4 http://marvel.wikia.com/Henry_Pym_(Earth-616)          4 ""   
+    ##  5 http://marvel.wikia.com/Henry_Pym_(Earth-616)          5 ""   
+    ##  6 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616)     1 "YES"
+    ##  7 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616)     2 ""   
+    ##  8 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616)     3 ""   
+    ##  9 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616)     4 ""   
+    ## 10 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616)     5 ""   
     ## # ℹ 855 more rows
 
 ``` r
@@ -151,24 +135,24 @@ print(returns)
 ```
 
     ## # A tibble: 865 × 3
-    ##    Name.Alias                     Time Return
-    ##    <chr>                         <dbl> <chr> 
-    ##  1 "Henry Jonathan \"Hank\" Pym"     1 "NO"  
-    ##  2 "Henry Jonathan \"Hank\" Pym"     2 ""    
-    ##  3 "Henry Jonathan \"Hank\" Pym"     3 ""    
-    ##  4 "Henry Jonathan \"Hank\" Pym"     4 ""    
-    ##  5 "Henry Jonathan \"Hank\" Pym"     5 ""    
-    ##  6 "Janet van Dyne"                  1 "YES" 
-    ##  7 "Janet van Dyne"                  2 ""    
-    ##  8 "Janet van Dyne"                  3 ""    
-    ##  9 "Janet van Dyne"                  4 ""    
-    ## 10 "Janet van Dyne"                  5 ""    
+    ##    URL                                                 Time Return
+    ##    <chr>                                              <dbl> <chr> 
+    ##  1 http://marvel.wikia.com/Henry_Pym_(Earth-616)          1 "NO"  
+    ##  2 http://marvel.wikia.com/Henry_Pym_(Earth-616)          2 ""    
+    ##  3 http://marvel.wikia.com/Henry_Pym_(Earth-616)          3 ""    
+    ##  4 http://marvel.wikia.com/Henry_Pym_(Earth-616)          4 ""    
+    ##  5 http://marvel.wikia.com/Henry_Pym_(Earth-616)          5 ""    
+    ##  6 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616)     1 "YES" 
+    ##  7 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616)     2 ""    
+    ##  8 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616)     3 ""    
+    ##  9 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616)     4 ""    
+    ## 10 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616)     5 ""    
     ## # ℹ 855 more rows
 
 ``` r
 avg_deaths <- deaths %>% # Average
   filter(Death == "YES") %>%           # Only consider actual deaths
-  group_by(Name.Alias) %>%             # Group by each Avenger
+  group_by(URL) %>%             # Group by each Avenger
   summarise(total_deaths = n()) %>%    # Count total deaths for each Avenger
   summarise(avg_deaths = mean(total_deaths))  # Calculate the average number of deaths
 
@@ -178,7 +162,7 @@ print(avg_deaths)
     ## # A tibble: 1 × 1
     ##   avg_deaths
     ##        <dbl>
-    ## 1       1.39
+    ## 1       1.29
 
 ## Individually
 
