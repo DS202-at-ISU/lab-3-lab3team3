@@ -175,4 +175,34 @@ print(returns_after_death)
 
 ## Nathan Cole:
 
+## David Chan:
+### FiveThirtyEight Statement
+
+> Given the Avengers’ 53 years in operation and overall mortality rate, fans of the comics can expect one current or former member to die every seven months or so, with a permanent death occurring once every 20 months.
+
+### Total number of deaths and permanent deaths among Avengers
+```{r}
+library(dplyr)
+
+death_stats <- av %>%
+  summarise(
+    total_deaths = sum(Death1 == "YES") + sum(Death2 == "YES") + sum(Death3 == "YES") +
+                   sum(Death4 == "YES") + sum(Death5 == "YES"),
+    total_permanent_deaths = sum(Death1 == "YES" & Return1 == "NO") +
+                             sum(Death2 == "YES" & Return2 == "NO") +
+                             sum(Death3 == "YES" & Return3 == "NO") +
+                             sum(Death4 == "YES" & Return4 == "NO") +
+                             sum(Death5 == "YES" & Return5 == "NO"),
+    years_in_operation = 53
+  ) %>%
+  mutate(
+    avg_death_rate_months = (years_in_operation * 12) / total_deaths,
+    avg_permanent_death_rate_months = (years_in_operation * 12) / total_permanent_deaths
+  )
+
+death_stats
+```
+
+### Include your answer: 
+The analysis confirms that Avengers' deaths occur approximately every seven months, with permanent deaths happening roughly every 20 months, validating the FiveThirtyEight statement.
 

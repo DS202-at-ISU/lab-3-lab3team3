@@ -163,6 +163,8 @@ print(returns)
     ## 10 http://marvel.wikia.com/Janet_van_Dyne_(Earth-616)     5 ""    
     ## # ℹ 855 more rows
 
+# \<\<\<\<\<\<\< HEAD
+
 ``` r
 avg_deaths <- deaths %>% # Average
   filter(Death == "YES") %>%           # Only consider actual deaths
@@ -178,7 +180,7 @@ print(avg_deaths)
     ##        <dbl>
     ## 1       1.29
 
-## Individually
+> > > > > > > 71745a2967507adf70b844e37c08aa375b6a2718 \## Individually
 
 For each team member, copy this part of the report.
 
@@ -268,4 +270,72 @@ acted as counting each death)
 
 ## Jack Larson:
 
+### FiveThirtyEight Statement
+
+> 57 occasions the individual made a comeback
+
+### counting the number of Avengers that returned
+
+``` r
+returns_after_death <- returns %>%
+  filter(tolower(Return) == "yes") %>%
+  summarise(n())
+
+print(returns_after_death)
+```
+
+    ## # A tibble: 1 × 1
+    ##   `n()`
+    ##   <int>
+    ## 1    57
+
+### Include your answer
+
+The author claimed that in total, there have been 57 total returns after
+death. After my anaylsis, I found this to be true.
+
 ## Nathan Cole:
+
+## David Chan:
+
+### FiveThirtyEight Statement
+
+> Given the Avengers’ 53 years in operation and overall mortality rate,
+> fans of the comics can expect one current or former member to die
+> every seven months or so, with a permanent death occurring once every
+> 20 months.
+
+### Total number of deaths and permanent deaths among Avengers
+
+``` r
+library(dplyr)
+
+death_stats <- av %>%
+  summarise(
+    total_deaths = sum(Death1 == "YES") + sum(Death2 == "YES") + sum(Death3 == "YES") +
+                   sum(Death4 == "YES") + sum(Death5 == "YES"),
+    total_permanent_deaths = sum(Death1 == "YES" & Return1 == "NO") +
+                             sum(Death2 == "YES" & Return2 == "NO") +
+                             sum(Death3 == "YES" & Return3 == "NO") +
+                             sum(Death4 == "YES" & Return4 == "NO") +
+                             sum(Death5 == "YES" & Return5 == "NO"),
+    years_in_operation = 53
+  ) %>%
+  mutate(
+    avg_death_rate_months = (years_in_operation * 12) / total_deaths,
+    avg_permanent_death_rate_months = (years_in_operation * 12) / total_permanent_deaths
+  )
+
+death_stats
+```
+
+    ##   total_deaths total_permanent_deaths years_in_operation avg_death_rate_months
+    ## 1           89                     32                 53              7.146067
+    ##   avg_permanent_death_rate_months
+    ## 1                          19.875
+
+### Include your answer:
+
+The analysis confirms that Avengers’ deaths occur approximately every
+seven months, with permanent deaths happening roughly every 20 months,
+validating the FiveThirtyEight statement.
